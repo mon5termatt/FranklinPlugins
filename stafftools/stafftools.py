@@ -51,7 +51,7 @@ class StaffTools:
 
     @commands.command(no_pm=True, pass_context=True)
     @checks.admin_or_permissions(manage_roles=True)
-    async def snap(self, ctx):
+    async def snap(self, ctx, user: discord.Member=None):
         """Thanos snaps all non paid users"""
 
         await self.bot.say("https://tenor.com/view/thanos-infinity-gauntlet-snap-finger-snap-gif-12502580")
@@ -60,10 +60,28 @@ class StaffTools:
         server=ctx.message.server
         for member in tuple(server.members):
             if len(member.roles) == 1:
-                await bot.kick(member)
+                await self.bot.kick(member)
                 snapped_users = snapped_users + 1
 
         await self.bot.say("It has been done, {} members parished in the mighty snap from your gauntlet.".format(snapped_users))
+
+    @commands.command(no_pm=True, pass_context=True)
+    @checks.admin_or_permissions(manage_roles=True)
+    async def fmute(self, ctx):
+        """Gives a user the muted role"""
+
+        if user is None:
+            await self.bot.say("You need to specify a member to mute.")
+            return
+
+        muted_role = self._role_from_string(ctx.message.server, "Muted")
+        try:
+            if muted_role in user.roles:
+                await self.bot.remove_roles(user, muted_role)
+                await self.bot.say("{} has been muted.".format(user.name))
+        except discord.Forbidden:
+            await self.bot.say("I don't have permissions to mute this person")
+        
 
 def setup_file():
     if not os.path.exists('data/stafftools/settings.json'):
