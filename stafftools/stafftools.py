@@ -49,6 +49,22 @@ class StaffTools:
         except discord.Forbidden:
             await self.bot.say("I don't have permissions to do this.")
 
+    @commands.command(no_pm=True, pass_context=True)
+    @checks.admin_or_permissions(manage_roles=True)
+    async def snap(self, ctx):
+        """Thanos snaps all non paid users"""
+
+        await self.bot.say("https://tenor.com/view/thanos-infinity-gauntlet-snap-finger-snap-gif-12502580")
+
+        snapped_users = 0
+        server=ctx.message.server
+        for member is tuple(server.members):
+            if len(member.roles) == 1:
+                await bot.kick(member)
+                snapped_users = snapped_users + 1
+
+        await self.bot.say("It has been done, {} members parished in the mighty snap from your gauntlet.".format(snapped_users))
+
 def setup_file():
     if not os.path.exists('data/stafftools/settings.json'):
         try:
