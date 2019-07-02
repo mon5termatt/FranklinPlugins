@@ -16,6 +16,15 @@ class StaffTools:
     def _save_settings(self):
         dataIO.save_json('data/admin/settings.json', self._settings)
 
+    def _role_from_string(self, server, rolename, roles=None):
+        if roles is None:
+            roles = server.roles
+
+        roles = [r for r in roles if r is not None]
+        role = discord.utils.find(lambda r: r.name.lower() == rolename.lower(),
+                                  roles)
+        return role
+
     @commands.command(no_pm=True, pass_context=True)
     @checks.admin_or_permissions(manage_roles=True)
     async def exile(self, ctx, user: discord.Member = none):
@@ -28,6 +37,7 @@ class StaffTools:
         prem_role = self._role_from_string(ctx.message.server, "Premium")
         plat_role = self._role_from_string(ctx.message.server, "Platinum")
         exile_role = self._role_from_string(ctx.message.server, "Exiled")
+
         try:
             if prem_role in user.roles:
                 await self.bot.remove_roles(user, prem_role)
@@ -49,6 +59,6 @@ def setup_file():
             dataIO.save_json('data/stafftools/settings.json', {})
 
 def setup(bot):
-    check_files()
+    setup_file()
     n = StaffTools(bot)
     bot.add_cog(n)
