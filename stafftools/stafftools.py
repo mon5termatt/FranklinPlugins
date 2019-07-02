@@ -79,9 +79,10 @@ class StaffTools:
 
         try:
             if muted_role in user.roles:
-                await self.bot.add_roles(user, muted_role)
-            else:
                 await self.bot.say("The user is already muted.")
+                return
+            else:
+                await self.bot.add_roles(user, muted_role)
                 
             await self.bot.say("{} has been muted.".format(user.name))
         except discord.Forbidden:
