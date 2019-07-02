@@ -45,7 +45,7 @@ class StaffTools:
                 await self.bot.remove_roles(user, plat_role)
 
             await self.bot.add_roles(user, exile_role)
-            await self.bot.say("{} has been sent to exiled! https://tenor.com/view/supernatural-spn-sam-sammy-jared-padalecki-gif-5417529".format(user.name))
+            await self.bot.say("{} has been sent to exile! https://tenor.com/view/supernatural-spn-sam-sammy-jared-padalecki-gif-5417529".format(user.name))
         except discord.Forbidden:
             await self.bot.say("I don't have permissions to do this.")
 
@@ -75,12 +75,15 @@ class StaffTools:
             return
 
         muted_role = self._role_from_string(ctx.message.server, "Muted")
+
         try:
             if muted_role in user.roles:
-                await self.bot.remove_roles(user, muted_role)
-                await self.bot.say("{} has been muted.".format(user.name))
+                await self.bot.add_roles(user, muted_role)
+
+            await self.bot.say("{} has been muted.".format(user.name))
         except discord.Forbidden:
-            await self.bot.say("I don't have permissions to mute this person")
+            await self.bot.say("I don't have permissions to mute this person.")
+
         
 
 def setup_file():
