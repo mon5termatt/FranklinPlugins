@@ -67,7 +67,7 @@ class StaffTools:
 
     @commands.command(no_pm=True, pass_context=True)
     @checks.admin_or_permissions(manage_roles=True)
-    async def mute(self, ctx, user: discord.Member=None):
+    async def fmute(self, ctx, user: discord.Member=None):
         """Gives a user the muted role"""
 
         if user is None:
@@ -77,14 +77,16 @@ class StaffTools:
         muted_role = self._role_from_string(ctx.message.server, "Muted")
 
         try:
-            await self.bot.add_roles(user, muted_role)
+            if not muted_role in user.roles:
+                await self.bot.add_roles(user, muted_role)
+
             await self.bot.say("{} has been muted.".format(user.name))
         except discord.Forbidden:
             await self.bot.say("I don't have permissions to mute this person.")
 
     @commands.command(no_pm=True, pass_context=True)
     @checks.admin_or_permissions(manage_roles=True)
-    async def unmute(self, ctx, user: discord.Member=None):
+    async def funmute(self, ctx, user: discord.Member=None):
         """Removes the muted role from a specific user"""
 
         if user is None:
