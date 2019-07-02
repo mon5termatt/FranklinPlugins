@@ -40,3 +40,7 @@ class StaffTools:
             await self.bot.say("{} has been sent to exiled! https://tenor.com/view/supernatural-spn-sam-sammy-jared-padalecki-gif-5417529".format(user.name))
         except discord.Forbidden:
             await self.bot.say("I don't have permissions to do this.")
+
+def setup(bot):
+    n = StaffTools(bot)
+    bot.add_cog(n)
