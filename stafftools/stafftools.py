@@ -2,16 +2,12 @@ import discord
 from discord.ext import commands
 from cogs.utils import checks
 from cogs.utils.dataIO import dataIO
-from cogs.utils.chat_formatting import box, pagify
 from copy import deepcopy
 import asyncio
 import logging
 import os
 
 log = logging.getLogger("red.admin")
-
-
-
 class StaffTools:
     """Various tools for Wardens staff, enjoy or don't, I don't care."""
 
@@ -41,7 +37,6 @@ class StaffTools:
                 await self.bot.remove_roles(user, plat_role)
 
             await self.bot.add_roles(user, exile_role)
-            await self.bot.say("{} has been sent to exile!".format(user.name)
-                                " https://tenor.com/view/supernatural-spn-sam-sammy-jared-padalecki-gif-5417529")
+            await self.bot.say("{} has been sent to exiled! https://tenor.com/view/supernatural-spn-sam-sammy-jared-padalecki-gif-5417529".format(user.name))
         except discord.Forbidden:
             await self.bot.say("I don't have permissions to do this.")
