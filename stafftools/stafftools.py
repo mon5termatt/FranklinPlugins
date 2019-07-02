@@ -2,12 +2,10 @@ import discord
 from discord.ext import commands
 from cogs.utils import checks
 from cogs.utils.dataIO import dataIO
-from copy import deepcopy
 import asyncio
 import logging
 import os
 
-log = logging.getLogger("red.admin")
 class StaffTools:
     """Various tools for Wardens staff, enjoy or don't, I don't care."""
 
@@ -41,6 +39,16 @@ class StaffTools:
         except discord.Forbidden:
             await self.bot.say("I don't have permissions to do this.")
 
+def setup_file():
+    if not os.path.exists('data/stafftools/settings.json'):
+        try:
+            os.mkdir('data/stafftools')
+        except FileExistsError:
+            pass
+        else:
+            dataIO.save_json('data/stafftools/settings.json', {})
+
 def setup(bot):
+    check_files()
     n = StaffTools(bot)
     bot.add_cog(n)
