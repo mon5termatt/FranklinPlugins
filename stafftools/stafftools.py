@@ -27,7 +27,7 @@ class StaffTools:
 
     @commands.command(no_pm=True, pass_context=True)
     @checks.admin_or_permissions(manage_roles=True)
-    async def exile(self, ctx, user: discord.Member = none):
+    async def exile(self, ctx, user: discord.Member=None):
         """Exile someone from the community"""
 
         if user is None:
