@@ -77,7 +77,7 @@ class StaffTools:
         muted_role = self._role_from_string(ctx.message.server, "Muted")
 
         try:
-            if not muted_role in user.roles:
+            if muted_role not in user.roles:
                 await self.bot.add_roles(user, muted_role)
                 
             await self.bot.say("{} has been muted.".format(user.name))
@@ -102,7 +102,7 @@ class StaffTools:
             await self.bot.say("{} has been unmuted.".format(user.name))
         except discord.Forbidden:
             await self.bot.say("I don't have permissions to unmute this person.")
-        
+
 def setup_file():
     if not os.path.exists('data/stafftools/settings.json'):
         try:
