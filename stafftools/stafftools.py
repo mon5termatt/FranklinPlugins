@@ -104,6 +104,7 @@ class StaffTools:
                 await self.bot.remove_roles(user, unmuted_role)
             else:
                 await self.bot.say("The selected user is not muted.")
+                return
 
             await self.bot.say("{} has been unmuted.".format(user.name))
         except discord.Forbidden:
