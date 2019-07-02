@@ -1,0 +1,9 @@
+{
+    "AUTHOR" : "Wardens Franklin",
+    "SHORT": "Plugins made for the Wardens bot.",
+    "DESCRIPTION" : "Wardens Franklin's plugins - https://wardens.menu"
+    "DISABLED" : false,
+    "NAME" : "Staff Tools",
+    "INSTALL_MSG" : "You loaded one of my cogs, good fucking job.",
+    "TAGS" : ["moderation"]
+}
