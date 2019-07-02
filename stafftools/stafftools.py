@@ -6,6 +6,7 @@ import asyncio
 import logging
 import os
 
+
 class StaffTools:
     """Various tools for Wardens staff, enjoy or don't, I don't care."""
 
@@ -67,7 +68,7 @@ class StaffTools:
 
     @commands.command(no_pm=True, pass_context=True)
     @checks.admin_or_permissions(manage_roles=True)
-    async def mute(self, ctx, user: discord.Member=None):
+    async def fmute(self, ctx, user: discord.Member=None):
         """Gives a user the muted role"""
 
         if user is None:
@@ -86,20 +87,20 @@ class StaffTools:
 
     @commands.command(no_pm=True, pass_context=True)
     @checks.admin_or_permissions(manage_roles=True)
-    async def unmute(self, ctx, user: discord.Member=None):
+    async def funmute(self, ctx, user: discord.Member=None):
         """Removes the muted role from a specific user"""
 
         if user is None:
             await self.bot.say("You need to specify a member to unmute.")
             return
 
-        muted_role = self._role_from_string(ctx.message.server, "Muted")
+        unmuted_role = self._role_from_string(ctx.message.server, "Muted")
 
         try:
             if muted_role in user.roles:
                 await self.bot.say("User is already muted.")
             else:
-                await self.bot.remove_roles(user, muted_role)
+                await self.bot.remove_roles(user, unmuted_role)
 
             await self.bot.say("{} has been unmuted.".format(user.name))
         except discord.Forbidden:
