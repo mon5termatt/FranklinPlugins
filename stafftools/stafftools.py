@@ -67,7 +67,7 @@ class StaffTools:
 
     @commands.command(no_pm=True, pass_context=True)
     @checks.admin_or_permissions(manage_roles=True)
-    async def fmute(self, ctx):
+    async def fmute(self, ctx, user: discord.Member=None):
         """Gives a user the muted role"""
 
         if user is None:
