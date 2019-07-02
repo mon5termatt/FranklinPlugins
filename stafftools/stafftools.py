@@ -105,6 +105,7 @@ class StaffTools:
         except discord.Forbidden:
             await self.bot.say("I don't have permissions to unmute this person.")
 
+
 def setup_file():
     if not os.path.exists('data/stafftools/settings.json'):
         try:
@@ -113,6 +114,7 @@ def setup_file():
             pass
         else:
             dataIO.save_json('data/stafftools/settings.json', {})
+
 
 def setup(bot):
     setup_file()
