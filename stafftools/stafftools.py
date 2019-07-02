@@ -58,7 +58,7 @@ class StaffTools:
 
         snapped_users = 0
         server=ctx.message.server
-        for member is tuple(server.members):
+        for member in tuple(server.members):
             if len(member.roles) == 1:
                 await bot.kick(member)
                 snapped_users = snapped_users + 1
