@@ -28,7 +28,7 @@ class StaffTools:
 
     @commands.command(no_pm=True, pass_context=True)
     @checks.admin_or_permissions(manage_roles=True)
-    async def exile(self, ctx, user: discord.Member=None):
+    async def fexile(self, ctx, user: discord.Member=None):
         """Exile someone from the community"""
 
         if user is None:
@@ -80,6 +80,8 @@ class StaffTools:
         try:
             if muted_role in user.roles:
                 await self.bot.add_roles(user, muted_role)
+            else:
+                await.bot.say("The user is already muted.")
                 
             await self.bot.say("{} has been muted.".format(user.name))
         except discord.Forbidden:
@@ -98,9 +100,9 @@ class StaffTools:
 
         try:
             if muted_role in user.roles:
-                await self.bot.say("User is already muted.")
-            else:
                 await self.bot.remove_roles(user, unmuted_role)
+            else:
+                await self.bot.say("The selected user is not muted.")
 
             await self.bot.say("{} has been unmuted.".format(user.name))
         except discord.Forbidden:
