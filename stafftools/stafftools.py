@@ -100,7 +100,7 @@ class StaffTools:
         unmuted_role = self._role_from_string(ctx.message.server, "Muted")
 
         try:
-            if muted_role in user.roles:
+            if unmuted_role in user.roles:
                 await self.bot.remove_roles(user, unmuted_role)
             else:
                 await self.bot.say("The selected user is not muted.")
