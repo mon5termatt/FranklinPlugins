@@ -51,7 +51,7 @@ class StaffTools:
 
     @commands.command(no_pm=True, pass_context=True)
     @checks.admin_or_permissions(manage_roles=True)
-    async def snap(self, ctx, user: discord.Member=None):
+    async def snap(self, ctx):
         """Thanos snaps all non paid users"""
 
         await self.bot.say("https://tenor.com/view/thanos-infinity-gauntlet-snap-finger-snap-gif-12502580")
