@@ -1,9 +1,0 @@
-{
-    "AUTHOR" : "Franklin and Matthew",
-    "SHORT": "Pruner",
-    "DESCRIPTION" : "Pruner",
-    "DISABLED" : false,
-    "NAME" : "Kickem",
-    "INSTALL_MSG" : "You loaded one of my cogs, good effing job.",
-    "TAGS" : ["moderation"]
-}
