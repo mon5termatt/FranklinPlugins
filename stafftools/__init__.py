@@ -1,9 +1,9 @@
-"""Package for BanCheck cog."""
-from .bancheck import BanCheck
+"""Package for stafftools cog."""
+from .stafftools import stafftools
 
 
 async def setup(bot):
-    """Load BanCheck cog."""
-    cog = BanCheck(bot)
+    """Load stafftools cog."""
+    cog = stafftools(bot)
     await cog.initialize()
     bot.add_cog(cog)
