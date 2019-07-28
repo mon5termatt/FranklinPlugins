@@ -1,3 +1,3 @@
-# FranklinPlugins
+# REDPlugins
 
 Just a fork
