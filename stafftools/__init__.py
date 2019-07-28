@@ -1,9 +1,4 @@
-"""Package for stafftools cog."""
-from .stafftools import stafftools
+from .snap import snap
 
-
-async def setup(bot):
-    """Load stafftools cog."""
-    cog = stafftools(bot)
-    await cog.initialize()
-    bot.add_cog(cog)
+def setup(bot):
+    bot.add_cog(snap())
