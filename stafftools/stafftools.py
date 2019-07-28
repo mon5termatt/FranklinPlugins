@@ -25,35 +25,12 @@ class StaffTools:
         role = discord.utils.find(lambda r: r.name.lower() == rolename.lower(),
                                   roles)
         return role
-
-    @commands.command(no_pm=True, pass_context=True)
-    @checks.admin_or_permissions(manage_roles=True)
-    async def exile(self, ctx, user: discord.Member=None):
-        """Exile someone from the community"""
-
-        if user is None:
-            await self.bot.say("You need to specify a member to exile.")
-            return
-
-        prem_role = self._role_from_string(ctx.message.server, "Premium")
-        plat_role = self._role_from_string(ctx.message.server, "Platinum")
-        exile_role = self._role_from_string(ctx.message.server, "Exiled")
-
-        try:
-            if prem_role in user.roles:
-                await self.bot.remove_roles(user, prem_role)
-            if plat_role in user.roles:
-                await self.bot.remove_roles(user, plat_role)
-
-            await self.bot.add_roles(user, exile_role)
-            await self.bot.say("{} has been sent to exile! https://tenor.com/view/supernatural-spn-sam-sammy-jared-padalecki-gif-5417529".format(user.name))
-        except discord.Forbidden:
-            await self.bot.say("I don't have permissions to do this.")
-
+    
+    
     @commands.command(no_pm=True, pass_context=True)
     @checks.admin_or_permissions(manage_roles=True)
     async def snap(self, ctx):
-        """Thanos snaps all non paid users"""
+        """Thanos snaps all non role users"""
 
         await self.bot.say("https://tenor.com/view/thanos-infinity-gauntlet-snap-finger-snap-gif-12502580")
 
@@ -65,51 +42,6 @@ class StaffTools:
                 snapped_users = snapped_users + 1
 
         await self.bot.say("It has been done, {} members parished in the mighty snap from your gauntlet.".format(snapped_users))
-
-    @commands.command(no_pm=True, pass_context=True)
-    @checks.admin_or_permissions(manage_roles=True)
-    async def fmute(self, ctx, user: discord.Member=None):
-        """Gives a user the muted role"""
-
-        if user is None:
-            await self.bot.say("You need to specify a member to mute.")
-            return
-
-        muted_role = self._role_from_string(ctx.message.server, "Muted")
-
-        try:
-            if muted_role in user.roles:
-                await self.bot.say("The user is already muted.")
-                return
-            else:
-                await self.bot.add_roles(user, muted_role)
-                
-            await self.bot.say("{} has been muted.".format(user.name))
-        except discord.Forbidden:
-            await self.bot.say("I don't have permissions to mute this person.")
-
-    @commands.command(no_pm=True, pass_context=True)
-    @checks.admin_or_permissions(manage_roles=True)
-    async def funmute(self, ctx, user: discord.Member=None):
-        """Removes the muted role from a specific user"""
-
-        if user is None:
-            await self.bot.say("You need to specify a member to unmute.")
-            return
-
-        unmuted_role = self._role_from_string(ctx.message.server, "Muted")
-
-        try:
-            if unmuted_role in user.roles:
-                await self.bot.remove_roles(user, unmuted_role)
-            else:
-                await self.bot.say("The selected user is not muted.")
-                return
-
-            await self.bot.say("{} has been unmuted.".format(user.name))
-        except discord.Forbidden:
-            await self.bot.say("I don't have permissions to unmute this person.")
-
 
 def setup_file():
     if not os.path.exists('data/stafftools/settings.json'):
