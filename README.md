@@ -1,3 +1,3 @@
 # REDPlugins
 
-# NOT DONE!!!
+# [p]snap only for now
